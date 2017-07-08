@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Telegram Sticker Pack Downloader</title>
         <style>
+            * {
+                box-sizing: border-box;
+            }
+            html, body {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                width: 100%;
+            }
             .container {
                 width: 100%;
                 font-size: 1.3em;
                 max-width: 720px;
-                padding: 0 2rem;
                 margin: 0 auto;
-                margin-top: 5rem;
+                margin-top: 3rem;
                 font-family: monospace;
+            }
+            .inner {
+                padding: 0 3rem;
             }
             .bkmk {
                 font-size: 2rem;
@@ -31,29 +43,31 @@
     </head>
     <body>
         <div class="container">
-            <h1>Telegram Sticker Pack Downloader</h1>
-            <h2>Download a sticker pack as PNGs.</h2>
+            <div class="inner">
+                <h1>Telegram Sticker Pack Downloader</h1>
+                <h2>Download a sticker pack as PNGs.</h2>
 
-            <p>Originally made because I wanted to share a sticker pack with friends that weren't on Telegram.</p>
+                <p>Originally made because I wanted to share a sticker pack with friends that weren't on Telegram.</p>
 
-            <h3>Instructions</h3>
-            <ol>
-                <li>Sign in to <a href="https://web.telegram.org/">https://web.telegram.org/</a>.</li>
-                <li>Open the add modal for the sticker pack you want in Telegram Web.</li>
-                <li>Scroll to the bottom so that all stickers are loaded into the modal.</li>
-                <li>Run this script.</li>
-            </ol>
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Sign in to <a href="https://web.telegram.org/">https://web.telegram.org/</a>.</li>
+                    <li>Open the add modal for the sticker pack you want in Telegram Web.</li>
+                    <li>Scroll to the bottom so that all stickers are loaded into the modal.</li>
+                    <li>Run this script.</li>
+                </ol>
 
-            <h3>Bookmarklet</h3>
-            <p>Note: While I did make this with security in mind (all dependencies are included with the script itself) you should never run arbitrary code, particularly on Telegram. The best idea is to probably not use this. The second best idea is to get the code yourself, vet it, then run it locally. However, there is still a bookmarklet for your convenience.</p>
-            <div class="btn"><a class="bkmk" href="javascript:var s=document.createElement('script');s.src='https://cdn.rawgit.com/caffeinewriter/tgspdl/gh-pages/tgspdl.js';document.body.appendChild(s);">TGSPDL</a></div>
-            <h3>Sample Sticker Packs to Try</h3>
-            <ul>
-                <li><a href="https://t.me/addstickers/animals">Just Zoo It!</a></li>
-                <li><a href="https://t.me/addstickers/EvilMinds">Evil Minds</a></li>
-            </ul>
-            <h3>Disclaimer</h3>
-            <p>This was mainly made for my own personal use. However, downloading the stickers doesn't give you the rights to use them in other places. If you really want to use Telegram stickers elsewhere, find the original artist of the sticker pack, and message them. Maybe you can even get the originals from them!</p>
+                <h3>Bookmarklet</h3>
+                <p>Note: While I did make this with security in mind (all dependencies are included with the script itself) you should never run arbitrary code, particularly on Telegram. The best idea is to probably not use this. The second best idea is to get the code yourself, vet it, then run it locally. However, there is still a bookmarklet for your convenience.</p>
+                <div class="btn"><a class="bkmk" href="javascript:var s=document.createElement('script');s.src='https://cdn.rawgit.com/caffeinewriter/tgspdl/gh-pages/tgspdl.js';document.body.appendChild(s);">TGSPDL</a></div>
+                <h3>Sample Sticker Packs to Try</h3>
+                <ul>
+                    <li><a href="https://t.me/addstickers/animals">Just Zoo It!</a></li>
+                    <li><a href="https://t.me/addstickers/EvilMinds">Evil Minds</a></li>
+                </ul>
+                <h3>Disclaimer</h3>
+                <p>This was mainly made for my own personal use. However, downloading the stickers doesn't give you the rights to use them in other places. If you really want to use Telegram stickers elsewhere, find the original artist of the sticker pack, and message them. Maybe you can even get the originals from them!</p>
+            </div>
         </div>
         <a href="https://github.com/caffeinewriter/tgspdl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     </body>
