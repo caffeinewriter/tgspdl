@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Telegram Sticker Pack Downloader</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            html, body {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                width: 100%;
+            }
+            .container {
+                width: 100%;
+                font-size: 1.3em;
+                max-width: 720px;
+                margin: 0 auto;
+                margin-top: 3rem;
+                font-family: monospace;
+            }
+            .inner {
+                padding: 0 3rem;
+            }
+            .sticker {
+                width: 33%;
+            }
+            /* Loading Animation by Alan Shortis */
+            /* https://codepen.io/alanshortis/pen/eJLVXr */
+            .loading {
+                border-radius: 50%;
+                width: 48px;
+                height: 48px;
+                border: .25rem solid rgba(0, 0, 0, 0.2);
+                border-top-color: #000;
+                animation: spin 650ms infinite linear;
+                margin: 5rem auto;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="inner">
+                <h1>Sticker Display</h1>
+                <input type="file" name="sticker-zip" id="stickerZip" onchange="onFileChange(this)">
+                <div class="sticker-list">
+                </div>    
+            </div>
+        </div>
+        <script src="https://cdn.rawgit.com/Stuk/jszip/v3.1.3/dist/jszip.min.js"></script>
+        <script type="text/javascript">
+            function onFileChange (t) {
+                console.log("Switching files...");
+                var file = t.files[0];
+                var sl = document.querySelector(".sticker-list");
+                sl.innerHTML = "<div class=\"loading\"></div>";
+                var zf = new JSZip();
+                zf.loadAsync(file).then(zip => {
+                    var images = [];
+                    zip.forEach((rPath, file) => {
+                        if (rPath.slice(-4) !== ".png") {
+                            sl.innerHTML = "Error loading ZIP file. Might not be telegram sticker file.";
+                            throw new Error("Error loading ZIP file. Might not be telegram sticker file.");
+                        }
+                        images.push(file.async("base64"));
+                    });
+                    Promise.all(images).then(res => {
+                        var dataURIs = res.map(v => "data:image/png;base64," + v );
+                        sl.innerHTML = "";
+                        dataURIs.forEach( v => {
+                            var el = document.createElement("img");
+                            el.src = v;
+                            el.classList.add("sticker");
+                            sl.appendChild(el);
+                        });
+                    });
+                });
+            }
+        </script>
+    </body>
+</html>
