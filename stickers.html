@@ -73,10 +73,10 @@
                             sl.innerHTML = "Error loading ZIP file. Might not be telegram sticker file.";
                             throw new Error("Error loading ZIP file. Might not be telegram sticker file.");
                         }
-                        images.push(file.async("base64"));
+                        images.push(file.async("arraybuffer"));
                     });
                     Promise.all(images).then(res => {
-                        var dataURIs = res.map(v => "data:image/png;base64," + v );
+                        var dataURIs = res.map(v => URL.createObjectURL(new Blob([v], {type: "image/png"})) );
                         sl.innerHTML = "";
                         dataURIs.forEach( v => {
                             var el = document.createElement("img");
