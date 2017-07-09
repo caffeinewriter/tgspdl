@@ -65,6 +65,15 @@
                 var file = t.files[0];
                 var sl = document.querySelector(".sticker-list");
                 sl.innerHTML = "<div class=\"loading\"></div>";
+                if (!file) {
+                    console.log("No file selected. Aborting...");
+                    sl.innerHTML = "No file selected.";
+                    return;
+                } else if (file.type !== "application/x-zip-compressed") {
+                    console.log("Not a zip file. Aborting...");
+                    sl.innerHTML = "Not a zip file.";
+                    return;
+                }
                 var zf = new JSZip();
                 zf.loadAsync(file).then(zip => {
                     var images = [];
